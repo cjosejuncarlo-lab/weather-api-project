@@ -53,4 +53,21 @@ public class WeatherDB {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
+
+    public static String getLatestWeather(){
+        try{
+            Connection conn=conn();
+           Statement st = conn.createStatement();
+           ResultSet rs=st.executeQuery("SELECT * FROM weather ORDER BY id DESC LIMIT 1");
+           while (rs.next()){
+               return "{\"city\":\""+rs.getString("city")+"\",\"temperature\":"+rs.getDouble("temperature")+
+                       ",\"windspeed\":"+rs.getDouble("windspeed")+"}";
+           }
+
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return "{}";
+    }
 }
