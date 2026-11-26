@@ -18,7 +18,7 @@ double wind =data.get("current_weather").get("windspeed").asDouble();
         System.out.println(response.body());
 
         WeatherDB.createTable();
-        WeatherDB.saveWeather("Iloilo",temp,wind);
+        WeatherDB.saveWeather("iloilo",temp,wind);
         WeatherDB.showWeather();
 
     }

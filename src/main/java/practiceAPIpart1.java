@@ -4,8 +4,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 public class practiceAPIpart1 {
 
+
     public static void main(String[] args) throws Exception {
-       String URL="https://api.open-meteo.com/v1/forecast?latitude=10.30&longitude=123.83&current_weather=true";
+       String URL="https://api.open-meteo.com/v1/forecast?latitude=10.78&longitude=122.51&current_weather=true";
          HttpClient waiter = HttpClient.newHttpClient();
          HttpRequest order = HttpRequest.newBuilder().uri(URI.create(URL)).build();
          HttpResponse<String> sender =waiter.send(order,HttpResponse.BodyHandlers.ofString());
@@ -16,10 +17,9 @@ public class practiceAPIpart1 {
         double wind =data.get("current_weather").get("windspeed").asDouble();
 
 
-        System.out.println(sec+ temp+ wind);
-
-
-        System.out.println("hello"+sender.body());
+         WeatherDB.createTable();
+         WeatherDB.showWeather();
+        WeatherDB.saveWeather("Iloilo", temp, wind);
 
 
     }
